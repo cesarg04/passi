@@ -1,0 +1,22 @@
+# Dockerfile para PostgreSQL
+FROM postgres:15-alpine
+
+# Variables de entorno para configurar PostgreSQL
+ENV POSTGRES_DB=myapp_db
+ENV POSTGRES_USER=myapp_user
+ENV POSTGRES_PASSWORD=myapp_password
+
+# Puerto por defecto de PostgreSQL
+EXPOSE 5432
+
+# Crear directorio para scripts de inicialización
+RUN mkdir -p /docker-entrypoint-initdb.d
+
+# Script de inicialización opcional (puedes descomentarlo si necesitas configuración adicional)
+# COPY init.sql /docker-entrypoint-initdb.d/
+
+# Configurar el directorio de datos
+VOLUME ["/var/lib/postgresql/data"]
+
+# Comando por defecto (ya está definido en la imagen base)
+# CMD ["postgres"]
