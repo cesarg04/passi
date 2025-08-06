@@ -51,11 +51,46 @@ El archivo `.env` ya está configurado con los detalles correctos de conexión.
   ```
 
 ¡Tu proyecto ahora está listo para ser usado con una base de datos PostgreSQL perfectamente configurada!
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## WebSocket para Tiempo Real
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Las tareas se actualizan en tiempo real usando WebSocket. Los eventos se emiten automáticamente cuando:
+- Se crea una tarea
+- Se actualiza una tarea  
+- Se elimina una tarea
+
+### Conexión WebSocket:
+- **Namespace**: `/tasks`
+- **URL**: `ws://localhost:3000/tasks`
+- **Autenticación**: JWT Token requerido
+
+### Eventos disponibles:
+- `task:created` - Nueva tarea creada
+- `task:updated` - Tarea actualizada
+- `task:deleted` - Tarea eliminada
+
+### Ejemplo de uso:
+Abre el archivo `websocket-client-example.html` en tu navegador para probar la conexión WebSocket.
+
+### Para frontend (JavaScript):
+```javascript
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3000/tasks', {
+  auth: {
+    token: 'tu-jwt-token-aqui'
+  }
+});
+
+socket.on('task:created', (task) => {
+  console.log('Nueva tarea:', task);
+});
+
+socket.on('task:updated', (task) => {
+  console.log('Tarea actualizada:', task);
+});
+
+socket.on('task:deleted', (data) => {
+  console.log('Tarea eliminada:', data.id);
+});
+```
