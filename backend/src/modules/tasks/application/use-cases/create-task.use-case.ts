@@ -1,9 +1,9 @@
-import { Injectable, Inject } from "@nestjs/common";
-import type { TaskRepository } from "../../domain/repositories/task.repository";
-import { TASK_REPOSITORY_TOKEN } from "../../domain/tokens";
-import { Task, TaskPriority } from "../../domain/entities/task.entity";
-import { CreateTaskDto, TaskResponseDto } from "../dto/task.dto";
-import { WebSocketEventService } from "../../../../shared/infrastructure/websocket/websocket-event.service";
+import { Injectable, Inject } from '@nestjs/common';
+import type { TaskRepository } from '../../domain/repositories/task.repository';
+import { TASK_REPOSITORY_TOKEN } from '../../domain/tokens';
+import { Task } from '../../domain/entities/task.entity';
+import { CreateTaskDto, TaskResponseDto } from '../dto/task.dto';
+import { WebSocketEventService } from '../../../../shared/infrastructure/websocket/websocket-event.service';
 
 @Injectable()
 export class CreateTaskUseCase {
@@ -21,8 +21,6 @@ export class CreateTaskUseCase {
       createTaskDto.title,
       userId,
       createTaskDto.description,
-      createTaskDto.priority || TaskPriority.MEDIUM,
-      createTaskDto.dueDate ? new Date(createTaskDto.dueDate) : undefined,
     );
 
     const createdTask = await this.taskRepository.create(task);

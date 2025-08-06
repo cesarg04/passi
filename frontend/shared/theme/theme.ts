@@ -1,6 +1,6 @@
-import { DefaultTheme } from 'react-native-paper';
+import { DefaultTheme, MD3DarkTheme } from 'react-native-paper';
 
-const theme = {
+export const Lighttheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
@@ -14,4 +14,20 @@ const theme = {
   },
 };
 
-export default theme;
+
+export const DarkTheme = {
+  ...MD3DarkTheme,
+  colors: {
+    ...MD3DarkTheme.colors,
+    primary: '#3399FF', // Azul más brillante para buen contraste en modo oscuro
+    accent: '#3399FF', // Azul consistente con el primary
+    background: '#121212', // Fondo general casi negro
+    surface: '#1E1E1E', // Gris muy oscuro para tarjetas y elementos
+    text: '#E0E0E0', // Gris claro para texto principal
+    placeholder: '#888888', // Gris tenue para placeholder
+    error: '#CF6679', // Rojo adaptado para dark mode
+  },
+};
+
+
+

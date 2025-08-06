@@ -1,4 +1,4 @@
-import theme from '@/shared/theme/theme';
+import { useCustomTheme } from '@/shared/hooks/useTheme';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-paper';
@@ -14,6 +14,8 @@ const FormLabel = (props: IFormLabelProps) => {
   const {
     fieldState: { error },
   } = useFormControlContext();
+  const theme = useCustomTheme()
+
   return (
     <Text
       style={{
@@ -21,7 +23,7 @@ const FormLabel = (props: IFormLabelProps) => {
           ? theme.colors.error
           : props.color
             ? props.color
-            : theme.colors.primary,
+            : theme.colors.text,
         ...styles.text,
       }}
     >
