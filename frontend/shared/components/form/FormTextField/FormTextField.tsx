@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
-    StyleProp,
-    TextStyle,
-    ViewStyle
+  StyleProp,
+  TextStyle,
+  useColorScheme,
+  ViewStyle
 } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
-import theme from '../../../theme/theme';
+
+import { useCustomTheme } from '@/shared/hooks/useTheme';
 import { useFormControlContext } from '../FormControl/FormControl';
 
 
@@ -20,9 +22,11 @@ const TextField = (props: ITextFieldProps) => {
     field,
     fieldState: { error },
   } = useFormControlContext();
+  const colorScheme = useColorScheme();
   const handleChange = (e: string | number) => {
     field.onChange(e);
   };
+  const theme = useCustomTheme();
   const [isShowPass, setIsShowPass] = useState(true);
 
   const config: TextInputProps = {
@@ -33,7 +37,7 @@ const TextField = (props: ITextFieldProps) => {
     onChangeText: handleChange,
     ref: field.ref,
     onBlur: field.onBlur,
-    textColor: 'black',
+    textColor: colorScheme === 'dark' ? 'white' : 'black',
     style: {
       backgroundColor: theme.colors.surface,
       height: 70,

@@ -39,15 +39,11 @@ export class UpdateTaskUseCase {
     // Actualizar detalles básicos si se proporcionan
     if (
       updateTaskDto.title ||
-      updateTaskDto.description !== undefined ||
-      updateTaskDto.priority ||
-      updateTaskDto.dueDate !== undefined
+      updateTaskDto.description !== undefined
     ) {
       updatedTask = updatedTask.updateDetails(
         updateTaskDto.title,
         updateTaskDto.description,
-        updateTaskDto.priority,
-        updateTaskDto.dueDate ? new Date(updateTaskDto.dueDate) : undefined,
       );
     }
 
