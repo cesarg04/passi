@@ -69,8 +69,6 @@ Las tareas se actualizan en tiempo real usando WebSocket. Los eventos se emiten 
 - `task:updated` - Tarea actualizada
 - `task:deleted` - Tarea eliminada
 
-### Ejemplo de uso:
-Abre el archivo `websocket-client-example.html` en tu navegador para probar la conexión WebSocket.
 
 ### Para frontend (JavaScript):
 ```javascript
